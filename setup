@@ -1,0 +1,127 @@
+#!/bin/sh
+
+apt update --yes
+apt upgrade --yes
+
+# Main Packages
+apt install -y --no-install-recommends \
+    apt-utils aria2 curl git libmagic-dev locales mediainfo neofetch p7zip-full p7zip-rar tzdata wget 
+
+# Build Packages
+apt install --yes --no-install-recommends \
+    autoconf automake build-essential cmake g++ gcc gettext gpg-agent intltool make software-properties-common unzip zip 
+
+# Python Packages
+apt install --yes --no-install-recommends \
+    python-is-python3 python3-dev python3-pip
+pip install --break-system-packages --no-cache-dir wheel
+
+# HandBrake Packages
+apt install --yes --no-install-recommends \
+    libass-dev libbz2-dev libdrm-dev libfontconfig-dev libfreetype-dev libfribidi-dev libharfbuzz-dev libjansson-dev libjpeg-turbo8-dev liblzma-dev libmp3lame-dev libnuma-dev libogg-dev \
+    libopus-dev libraw-dev libsamplerate0-dev libspeex-dev libssl-dev libtheora-dev libtool libtool-bin libturbojpeg0-dev libudev-dev libva-dev libvorbis-dev libvpx-dev libx264-dev libxml2-dev \
+    m4 meson nasm ninja-build patch pkg-config tar
+
+# MKVToolNix Packages
+wget http://security.ubuntu.com/ubuntu/pool/main/f/flac/libflac8_1.3.3-2ubuntu0.2_amd64.deb
+dpkg --install libflac8_1.3.3-2ubuntu0.2_amd64.deb
+wget http://security.ubuntu.com/ubuntu/pool/universe/f/fmtlib/libfmt8_8.1.1+ds1-2_amd64.deb
+dpkg --install libfmt8_8.1.1+ds1-2_amd64.deb
+
+mkdir /Temp
+
+locale-gen en_US.UTF-8
+update-locale LANG=en_US.UTF-8
+dpkg-reconfigure --frontend=noninteractive locales
+
+ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+dpkg-reconfigure --frontend=noninteractive tzdata
+
+cd /Temp
+wget https://github.com/anidl/multi-downloader-nx/releases/latest/download/multi-downloader-nx-linux-cli.7z
+7z x multi-downloader-nx-linux-cli.7z
+cd /Temp/multi-downloader-nx-linux-x64-cli
+mv aniDL /usr/bin/anidl
+chmod +x /usr/bin/anidl
+anidl --service "crunchy" --dlFonts
+
+cd /Temp
+mkdir Bento4
+cd /Temp/Bento4
+git clone -c advice.detachedHead=false https://github.com/axiomatic-systems/Bento4.git .
+cmake -DCMAKE_BUILD_TYPE=Release .
+make
+make install
+rm -rf .git
+
+cd /Temp
+wget https://github.com/arakurumi/FFmpeg-Builds/releases/download/latest/ffmpeg-n7.0-latest-linux64-nonfree-7.0.tar.xz
+7z x ffmpeg-n7.0-latest-linux64-nonfree-7.0.tar.xz
+7z x ffmpeg-n7.0-latest-linux64-nonfree-7.0.tar
+cd /Temp/ffmpeg-n7.0-latest-linux64-nonfree-7.0/bin
+mv ffmpeg /usr/bin/ffmpeg
+mv ffprobe /usr/bin/ffprobe
+mv ffplay /usr/bin/ffplay
+chmod +x /usr/bin/ffmpeg
+chmod +x /usr/bin/ffprobe
+chmod +x /usr/bin/ffplay
+
+cd /Temp
+mkdir GPAC
+cd /Temp/GPAC
+git clone -c advice.detachedHead=false https://github.com/gpac/gpac.git .
+./configure
+make
+make install
+
+cd /Temp
+mkdir HandBrake
+cd /Temp/HandBrake
+HandBrakeVersion=$(curl -s https://api.github.com/repos/HandBrake/HandBrake/releases/latest | awk '/tag_name/{print $4;exit}' FS='[""]')
+git clone -c advice.detachedHead=false --branch $HandBrakeVersion https://github.com/HandBrake/HandBrake.git .
+./configure --launch-jobs=$(nproc) --enable-qsv --disable-gtk --launch 
+cd /Temp/HandBrake/build
+mv HandBrakeCLI /usr/bin/handbrake
+chmod +x /usr/bin/handbrake
+cd HandBrake
+rm -rf .git
+
+cd /Temp
+wget -O /usr/share/keyrings/gpg-pub-moritzbunkus.gpg https://mkvtoolnix.download/gpg-pub-moritzbunkus.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ jammy main" >> /etc/apt/sources.list.d/mkvtoolnix.download.list
+echo "deb-src [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ jammy main" >> /etc/apt/sources.list.d/mkvtoolnix.download.list
+apt --yes update
+apt install --yes --no-install-recommends mkvtoolnix
+
+cd /Temp
+wget https://github.com/RikaCelery/N_m3u8DL-RE/releases/download/v0.9.1/N_m3u8DL-RE_Beta_linux-x64_celery_20240520_v0.9.1.tar.gz
+7z x N_m3u8DL-RE_Beta_linux-x64_celery_20240520_v0.9.1.tar.gz
+7z x N_m3u8DL-RE_Beta_linux-x64_celery_20240520_v0.9.1.tar
+cd /Temp/N_m3u8DL-RE_Beta_linux-x64
+mv N_m3u8DL-RE /usr/bin/m3u8
+chmod +x /usr/bin/m3u8
+
+cd /Temp
+curl https://rclone.org/install.sh | bash
+
+cd /Temp
+wget https://github.com/shaka-project/shaka-packager/releases/latest/download/packager-linux-x64
+mv packager-linux-x64 /usr/bin/shaka-packager
+chmod +x /usr/bin/shaka-packager
+
+cd /
+
+apt update --yes
+apt upgrade --yes
+
+apt remove --yes \
+    autoconf automake build-essential cargo cmake g++ gcc gettext gpg-agent libass-dev libbz2-dev libdrm-dev libfontconfig-dev libfreetype-dev libfribidi-dev libharfbuzz-dev liblzma-dev \
+    libmp3lame-dev libnuma-dev libogg-dev libopus-dev libraw-dev libsamplerate0-dev libssl-dev libtheora-dev libtool libtool-bin libudev-dev libva-dev libvorbis-dev libvpx-dev libx264-dev \
+    libxml2-dev m4 make meson nasm ninja-build patch pkg-config software-properties-common tar unzip zip
+
+apt autoclean --yes
+apt autoremove --yes
+
+rm -rf /Temp
+rm -rf setup
+rm -rf Dockerfile

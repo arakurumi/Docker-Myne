@@ -58,7 +58,6 @@ cd /Temp
 curl https://pkg.cloudflareclient.com/pubkey.gpg -o cloudflare-warp-archive-keyring.gpg
 gpg --yes --dearmor --output /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg cloudflare-warp-archive-keyring.gpg
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ jammy main" >> /etc/apt/sources.list.d/cloudflare-client.list
-echo "deb-src [arch=amd64 signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ jammy main" >> /etc/apt/sources.list.d/cloudflare-client.list
 apt update --yes
 apt install --yes --no-install-recommends cloudflare-warp
 

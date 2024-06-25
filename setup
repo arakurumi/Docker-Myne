@@ -52,7 +52,6 @@ git clone -c advice.detachedHead=false https://github.com/axiomatic-systems/Bent
 cmake -DCMAKE_BUILD_TYPE=Release .
 make
 make install
-rm -rf .git
 
 cd /Temp
 curl https://pkg.cloudflareclient.com/pubkey.gpg -o cloudflare-warp-archive-keyring.gpg

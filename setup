@@ -90,8 +90,6 @@ git clone -c advice.detachedHead=false --branch $HandBrakeVersion https://github
 cd /Temp/HandBrake/build
 mv HandBrakeCLI /usr/bin/handbrake
 chmod +x /usr/bin/handbrake
-cd HandBrake
-rm -rf .git
 
 cd /Temp
 wget -O /usr/share/keyrings/gpg-pub-moritzbunkus.gpg https://mkvtoolnix.download/gpg-pub-moritzbunkus.gpg

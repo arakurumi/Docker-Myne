@@ -54,8 +54,14 @@ make
 make install
 rm -rf .git
 
+wget -O /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg https://pkg.cloudflareclient.com/pubkey.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ $(lsb_release -cs) main" >> /etc/apt/sources.list.d/cloudflare-client.list
+echo "deb-src [arch=amd64 signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ $(lsb_release -cs) main" >> /etc/apt/sources.list.d/cloudflare-client.list
+apt --yes update
+apt install --yes --no-install-recommends cloudflare-warp
+
 cd /Temp
-wget https://github.com/arakurumi/FFmpeg-Builds/releases/download/latest/ffmpeg-n7.0-latest-linux64-nonfree-7.0.tar.xz
+wget https://github.com/arakurumi/FFmpeg-Builds/releases/latest/download/ffmpeg-n7.0-latest-linux64-nonfree-7.0.tar.xz
 7z x ffmpeg-n7.0-latest-linux64-nonfree-7.0.tar.xz
 7z x ffmpeg-n7.0-latest-linux64-nonfree-7.0.tar
 cd /Temp/ffmpeg-n7.0-latest-linux64-nonfree-7.0/bin
@@ -88,15 +94,15 @@ rm -rf .git
 
 cd /Temp
 wget -O /usr/share/keyrings/gpg-pub-moritzbunkus.gpg https://mkvtoolnix.download/gpg-pub-moritzbunkus.gpg
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ jammy main" >> /etc/apt/sources.list.d/mkvtoolnix.download.list
-echo "deb-src [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ jammy main" >> /etc/apt/sources.list.d/mkvtoolnix.download.list
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ $(lsb_release -cs) main" >> /etc/apt/sources.list.d/mkvtoolnix.download.list
+echo "deb-src [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ $(lsb_release -cs) main" >> /etc/apt/sources.list.d/mkvtoolnix.download.list
 apt --yes update
 apt install --yes --no-install-recommends mkvtoolnix
 
 cd /Temp
-wget https://github.com/RikaCelery/N_m3u8DL-RE/releases/download/v0.9.1/N_m3u8DL-RE_Beta_linux-x64_celery_20240520_v0.9.1.tar.gz
-7z x N_m3u8DL-RE_Beta_linux-x64_celery_20240520_v0.9.1.tar.gz
-7z x N_m3u8DL-RE_Beta_linux-x64_celery_20240520_v0.9.1.tar
+wget https://github.com/arakurumi/N_m3u8DL-RE/releases/latest/download/N_m3u8DL-RE_Beta_linux-x64.tar.gz
+7z x N_m3u8DL-RE_Beta_linux-x64.tar.gz
+7z x N_m3u8DL-RE_Beta_linux-x64.tar
 cd /Temp/N_m3u8DL-RE_Beta_linux-x64
 mv N_m3u8DL-RE /usr/bin/m3u8
 chmod +x /usr/bin/m3u8

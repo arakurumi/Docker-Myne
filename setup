@@ -61,6 +61,11 @@ apt update --yes
 apt install --yes --no-install-recommends cloudflare-warp
 
 cd /Temp
+add-apt-repository --yes ppa:zhangsongcui3371/fastfetch
+apt update --yes
+apt install --yes --no-install-recommends fastfetch
+
+cd /Temp
 wget https://github.com/arakurumi/FFmpeg-Builds/releases/latest/download/ffmpeg-n7.0-latest-linux64-nonfree-7.0.tar.xz
 7z x ffmpeg-n7.0-latest-linux64-nonfree-7.0.tar.xz
 7z x ffmpeg-n7.0-latest-linux64-nonfree-7.0.tar

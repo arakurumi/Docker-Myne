@@ -28,6 +28,11 @@ dpkg --install libflac8_1.3.3-2ubuntu0.2_amd64.deb
 wget http://security.ubuntu.com/ubuntu/pool/universe/f/fmtlib/libfmt8_8.1.1+ds1-2_amd64.deb
 dpkg --install libfmt8_8.1.1+ds1-2_amd64.deb
 
+# Snap Packages
+snap install gost
+snap install hola-proxy
+snap install windscribe-proxy
+
 mkdir /Temp
 
 locale-gen en_US.UTF-8
@@ -94,6 +99,8 @@ git clone -c advice.detachedHead=false --branch $HandBrakeVersion https://github
 cd /Temp/HandBrake/build
 mv HandBrakeCLI /usr/bin/handbrake
 chmod +x /usr/bin/handbrake
+cd /Temp/HandBrake
+rm -rf .git
 
 cd /Temp
 wget -O /usr/share/keyrings/gpg-pub-moritzbunkus.gpg https://mkvtoolnix.download/gpg-pub-moritzbunkus.gpg

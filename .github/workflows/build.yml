@@ -16,9 +16,6 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:      
-      - name: Checkout 
-        uses: actions/checkout@main
-
       - name: Login to Docker.io
         uses: docker/login-action@master
         with:

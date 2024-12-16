@@ -110,9 +110,9 @@ apt update --yes
 apt install --yes --no-install-recommends mkvtoolnix
 
 cd /Temp
-wget https://github.com/nilaoda/N_m3u8DL-RE/releases/latest/download/N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241201.tar.gz
-7z x N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241201.tar.gz
-7z x N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241201.tar
+wget https://github.com/nilaoda/N_m3u8DL-RE/releases/latest/download/N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241203.tar.gz
+7z x N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241203.tar.gz
+7z x N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241203.tar
 mv N_m3u8DL-RE /usr/bin/m3u8
 chmod +x /usr/bin/m3u8
 

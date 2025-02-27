@@ -5,11 +5,11 @@ apt upgrade --yes
 
 # Main Packages
 apt install --yes --no-install-recommends \
-    apt-utils aria2 ca-certificates curl git libmagic-dev locales mediainfo neofetch p7zip-full p7zip-rar tzdata wget 
+    apt-utils aria2 ca-certificates curl git libmagic-dev locales mediainfo neofetch p7zip-full p7zip-rar tzdata wget
 
 # Build Packages
 apt install --yes --no-install-recommends \
-    autoconf automake build-essential cmake g++ gcc gettext gpg-agent intltool libcurl4-openssl-dev libssl-dev make software-properties-common unzip zip 
+    autoconf automake build-essential cmake g++ gcc gettext gpg-agent intltool libcurl4-openssl-dev libssl-dev make software-properties-common unzip zip
 
 # Python Packages
 apt install --yes --no-install-recommends \
@@ -20,7 +20,7 @@ python -m pip install --upgrade pip
 apt install --yes --no-install-recommends \
     libass-dev libbz2-dev libdrm-dev libfontconfig-dev libfreetype-dev libfribidi-dev libharfbuzz-dev libjansson-dev libjpeg-turbo8-dev liblzma-dev libmp3lame-dev \
     libnuma-dev libogg-dev libopus-dev libraw-dev libsamplerate0-dev libspeex-dev libtheora-dev libtool libtool-bin libturbojpeg0-dev libudev-dev libva-dev libvorbis-dev libvpx-dev \
-    libx264-dev libxml2-dev m4 meson nasm ninja-build patch pkg-config tar
+libx264-dev libxml2-dev m4 meson nasm ninja-build patch pkg-config tar
 
 # MKVToolNix Packages
 wget http://security.ubuntu.com/ubuntu/pool/main/f/flac/libflac8_1.3.3-2ubuntu0.2_amd64.deb
@@ -61,7 +61,7 @@ make install
 cd /Temp
 curl https://pkg.cloudflareclient.com/pubkey.gpg -o cloudflare-warp-archive-keyring.gpg
 gpg --yes --dearmor --output /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg cloudflare-warp-archive-keyring.gpg
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ jammy main" >> /etc/apt/sources.list.d/cloudflare-client.list
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ jammy main" >>/etc/apt/sources.list.d/cloudflare-client.list
 apt update --yes
 apt install --yes --no-install-recommends cloudflare-warp
 
@@ -95,7 +95,7 @@ mkdir HandBrake
 cd /Temp/HandBrake
 HandBrakeVersion=$(curl -s https://api.github.com/repos/HandBrake/HandBrake/releases/latest | awk '/tag_name/{print $4;exit}' FS='[""]')
 git clone -c advice.detachedHead=false --branch $HandBrakeVersion https://github.com/HandBrake/HandBrake.git .
-./configure --launch-jobs=$(nproc) --enable-qsv --disable-gtk --launch 
+./configure --launch-jobs=$(nproc) --enable-qsv --disable-gtk --launch
 cd /Temp/HandBrake/build
 mv HandBrakeCLI /usr/bin/handbrake
 chmod +x /usr/bin/handbrake
@@ -104,8 +104,8 @@ rm -rf .git
 
 cd /Temp
 wget -O /usr/share/keyrings/gpg-pub-moritzbunkus.gpg https://mkvtoolnix.download/gpg-pub-moritzbunkus.gpg
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ $(lsb_release -cs) main" >> /etc/apt/sources.list.d/mkvtoolnix.download.list
-echo "deb-src [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ $(lsb_release -cs) main" >> /etc/apt/sources.list.d/mkvtoolnix.download.list
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ $(lsb_release -cs) main" >>/etc/apt/sources.list.d/mkvtoolnix.download.list
+echo "deb-src [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ $(lsb_release -cs) main" >>/etc/apt/sources.list.d/mkvtoolnix.download.list
 apt update --yes
 apt install --yes --no-install-recommends mkvtoolnix
 
@@ -123,6 +123,9 @@ cd /Temp
 wget https://github.com/shaka-project/shaka-packager/releases/latest/download/packager-linux-x64
 mv packager-linux-x64 /usr/bin/shaka-packager
 chmod +x /usr/bin/shaka-packager
+
+cd /
+mv files/hls66 /usr/bin/hls66
 
 cd /
 

@@ -126,6 +126,7 @@ chmod +x /usr/bin/shaka-packager
 
 cd /
 mv files/hls66 /usr/bin/hls66
+chmod +x /usr/bin/hls66
 
 cd /
 

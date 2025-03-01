@@ -20,7 +20,7 @@ python -m pip install --upgrade pip
 apt install --yes --no-install-recommends \
     libass-dev libbz2-dev libdrm-dev libfontconfig-dev libfreetype-dev libfribidi-dev libharfbuzz-dev libjansson-dev libjpeg-turbo8-dev liblzma-dev libmp3lame-dev \
     libnuma-dev libogg-dev libopus-dev libraw-dev libsamplerate0-dev libspeex-dev libtheora-dev libtool libtool-bin libturbojpeg0-dev libudev-dev libva-dev libvorbis-dev libvpx-dev \
-libx264-dev libxml2-dev m4 meson nasm ninja-build patch pkg-config tar
+    libx264-dev libxml2-dev m4 meson nasm ninja-build patch pkg-config tar
 
 # MKVToolNix Packages
 wget http://security.ubuntu.com/ubuntu/pool/main/f/flac/libflac8_1.3.3-2ubuntu0.2_amd64.deb
@@ -123,10 +123,6 @@ cd /Temp
 wget https://github.com/shaka-project/shaka-packager/releases/latest/download/packager-linux-x64
 mv packager-linux-x64 /usr/bin/shaka-packager
 chmod +x /usr/bin/shaka-packager
-
-cd /
-mv files/hls66 /usr/bin/hls66
-chmod +x /usr/bin/hls66
 
 cd /
 

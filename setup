@@ -22,16 +22,10 @@ apt install --yes --no-install-recommends \
     libnuma-dev libogg-dev libopus-dev libraw-dev libsamplerate0-dev libspeex-dev libtheora-dev libtool libtool-bin libturbojpeg0-dev libudev-dev libva-dev libvorbis-dev libvpx-dev \
     libx264-dev libxml2-dev m4 meson nasm ninja-build patch pkg-config tar
 
-# MKVToolNix Packages
-wget http://security.ubuntu.com/ubuntu/pool/main/f/flac/libflac8_1.3.3-2ubuntu0.2_amd64.deb
-dpkg --install libflac8_1.3.3-2ubuntu0.2_amd64.deb
-wget http://security.ubuntu.com/ubuntu/pool/universe/f/fmtlib/libfmt8_8.1.1+ds1-2_amd64.deb
-dpkg --install libfmt8_8.1.1+ds1-2_amd64.deb
-
 # Snap Packages
 snap install gost
 snap install hola-proxy
-snap install windscribe-proxy
+snap install opera-proxy
 
 mkdir /Temp
 
@@ -42,6 +36,7 @@ dpkg-reconfigure --frontend=noninteractive locales
 ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 dpkg-reconfigure --frontend=noninteractive tzdata
 
+# AniDL
 cd /Temp
 wget https://github.com/anidl/multi-downloader-nx/releases/latest/download/multi-downloader-nx-linux-cli.7z
 7z x multi-downloader-nx-linux-cli.7z
@@ -50,6 +45,7 @@ mv aniDL /usr/bin/anidl
 chmod +x /usr/bin/anidl
 anidl --service "crunchy" --dlFonts
 
+# Bento4
 cd /Temp
 mkdir Bento4
 cd /Temp/Bento4
@@ -58,18 +54,17 @@ cmake -DCMAKE_BUILD_TYPE=Release .
 make
 make install
 
+# Code-Server
 cd /Temp
-curl https://pkg.cloudflareclient.com/pubkey.gpg -o cloudflare-warp-archive-keyring.gpg
-gpg --yes --dearmor --output /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg cloudflare-warp-archive-keyring.gpg
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ jammy main" >>/etc/apt/sources.list.d/cloudflare-client.list
-apt update --yes
-apt install --yes --no-install-recommends cloudflare-warp
+curl -fsSL https://code-server.dev/install.sh | sh
 
+# Fastfetch
 cd /Temp
 add-apt-repository --yes ppa:zhangsongcui3371/fastfetch
 apt update --yes
 apt install --yes --no-install-recommends fastfetch
 
+# FFMPEG
 cd /Temp
 wget https://github.com/arakurumi/FFmpeg-Builds/releases/latest/download/ffmpeg-n7.1-latest-linux64-nonfree-7.1.tar.xz
 7z x ffmpeg-n7.1-latest-linux64-nonfree-7.1.tar.xz
@@ -82,6 +77,7 @@ chmod +x /usr/bin/ffmpeg
 chmod +x /usr/bin/ffprobe
 chmod +x /usr/bin/ffplay
 
+# GPAC
 cd /Temp
 mkdir GPAC
 cd /Temp/GPAC
@@ -90,6 +86,7 @@ git clone -c advice.detachedHead=false https://github.com/gpac/gpac.git .
 make
 make install
 
+# HandBrake
 cd /Temp
 mkdir HandBrake
 cd /Temp/HandBrake
@@ -102,6 +99,7 @@ chmod +x /usr/bin/handbrake
 cd /Temp/HandBrake
 rm -rf .git
 
+# MKVToolNix
 cd /Temp
 wget -O /usr/share/keyrings/gpg-pub-moritzbunkus.gpg https://mkvtoolnix.download/gpg-pub-moritzbunkus.gpg
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ $(lsb_release -cs) main" >>/etc/apt/sources.list.d/mkvtoolnix.download.list
@@ -109,6 +107,7 @@ echo "deb-src [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg
 apt update --yes
 apt install --yes --no-install-recommends mkvtoolnix
 
+# N-M3U8DL-Re
 cd /Temp
 wget https://github.com/nilaoda/N_m3u8DL-RE/releases/latest/download/N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241203.tar.gz
 7z x N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241203.tar.gz
@@ -116,14 +115,17 @@ wget https://github.com/nilaoda/N_m3u8DL-RE/releases/latest/download/N_m3u8DL-RE
 mv N_m3u8DL-RE /usr/bin/m3u8
 chmod +x /usr/bin/m3u8
 
+# NordVPN
 cd /Temp
 curl -fsSL https://downloads.nordcdn.com/apps/linux/install.sh | bash
 
+# Rclone
 cd /Temp
 curl https://rclone.org/install.sh | bash
 
+# Shaka-Packager
 cd /Temp
-wget https://github.com/shaka-project/shaka-packager/releases/latest/download/packager-linux-x64
+wget https://github.com/shaka-project/shaka-packager/releases/download/v2.6.1/packager-linux-x64
 mv packager-linux-x64 /usr/bin/shaka-packager
 chmod +x /usr/bin/shaka-packager
 

@@ -1,4 +1,4 @@
-FROM ubuntu:rolling
+FROM ubuntu:rolling AS builder
 
 ENV DEBIAN_FRONTEND=noninteractive \
     LANG=en_US.UTF-8 \
@@ -6,6 +6,12 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LC_ALL=en_US.UTF-8 \
     TZ=Asia/Jakarta
 
-COPY . .
+COPY . /
 
-RUN bash setup
+RUN /usr/bin/bash setup
+
+FROM ubuntu:rolling
+
+COPY --from=builder / /
+
+CMD ["/usr/bin/bash"]

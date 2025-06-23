@@ -145,6 +145,7 @@ mv packager-linux-x64 /usr/bin/shaka-packager
 chmod +x /usr/bin/shaka-packager
 
 cd /
+rm -rf /Temp
 
 apt update --yes
 apt upgrade --yes
@@ -157,6 +158,8 @@ apt remove --yes \
 apt autoclean --yes
 apt autoremove --yes
 
-rm -rf /Temp
-rm -rf setup
+rm -rf /root/.cache
+rm -rf /tmp/*
+rm -rf /var/cache/apk/*
 rm -rf Dockerfile
+rm -rf setup

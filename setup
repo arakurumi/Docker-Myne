@@ -22,11 +22,6 @@ apt install --yes --no-install-recommends \
     libnuma-dev libogg-dev libopus-dev libraw-dev libsamplerate0-dev libspeex-dev libtheora-dev libtool libtool-bin libturbojpeg0-dev libudev-dev libva-dev libvorbis-dev libvpx-dev \
     libx264-dev libxml2-dev m4 meson nasm ninja-build patch pkg-config tar
 
-# Snap Packages
-snap install gost
-snap install hola-proxy
-snap install opera-proxy
-
 mkdir /Temp
 
 locale-gen en_US.UTF-8
@@ -77,6 +72,14 @@ chmod +x /usr/bin/ffmpeg
 chmod +x /usr/bin/ffprobe
 chmod +x /usr/bin/ffplay
 
+# Gost
+cd /Temp
+wget https://github.com/ginuerzh/gost/releases/download/v2.12.0/gost_2.12.0_linux_amd64v3.tar.gz
+7z x gost_2.12.0_linux_amd64v3.tar.gz
+7z x gost_2.12.0_linux_amd64v3.tar
+mv gost /usr/bin/gost
+chmod +x /usr/bin/gost
+
 # GPAC
 cd /Temp
 mkdir GPAC
@@ -99,6 +102,12 @@ chmod +x /usr/bin/handbrake
 cd /Temp/HandBrake
 rm -rf .git
 
+# Hola-Proxy
+cd /Temp
+wget https://github.com/Snawoot/hola-proxy/releases/download/v1.17.0/hola-proxy.linux-amd64
+mv hola-proxy.linux-amd64 /usr/bin/hola-proxy
+chmod +x /usr/bin/hola-proxy
+
 # MKVToolNix
 cd /Temp
 wget -O /usr/share/keyrings/gpg-pub-moritzbunkus.gpg https://mkvtoolnix.download/gpg-pub-moritzbunkus.gpg
@@ -118,6 +127,12 @@ chmod +x /usr/bin/m3u8
 # NordVPN
 cd /Temp
 curl -fsSL https://downloads.nordcdn.com/apps/linux/install.sh | bash
+
+# Opera-Proxy
+cd /Temp
+wget https://github.com/Snawoot/opera-proxy/releases/download/v1.9.0/opera-proxy.linux-amd64
+mv opera-proxy.linux-amd64 /usr/bin/opera-proxy
+chmod +x /usr/bin/opera-proxy
 
 # Rclone
 cd /Temp

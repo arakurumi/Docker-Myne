@@ -9,7 +9,7 @@ apk add --no-cache \
 
 # Build Packages
 apk add --no-cache \
-    autoconf automake boost-dev ccache clang17-dev cmake curl-dev dpkg g++ gawk gcc gettext-dev jq libtool linux-headers make musl-dev musl-locales pv unzip xz zip
+    autoconf automake bash boost-dev ccache clang17-dev cmake curl-dev dpkg g++ gawk gcc gettext-dev jq libtool linux-headers make musl-dev musl-locales pv unzip xz zip
 
 # Python Packages
 apk add --no-cache py3-pip python3-dev
@@ -102,7 +102,7 @@ chmod +x /usr/bin/m3u8
 
 # NordVPN
 cd /Temp
-curl -fsSL https://downloads.nordcdn.com/apps/linux/install.sh | sh
+curl -fsSL https://downloads.nordcdn.com/apps/linux/install.sh | bash
 
 # Opera-Proxy
 cd /Temp
@@ -112,7 +112,7 @@ chmod +x /usr/bin/opera-proxy
 
 # Rclone
 cd /Temp
-curl https://rclone.org/install.sh | sh
+curl https://rclone.org/install.sh | bash
 
 # Shaka-Packager
 cd /Temp
@@ -127,7 +127,7 @@ apk update
 apk upgrade
 
 apk del \
-    autoconf automake boost-dev busybox c-ares-dev cargo cargo-c ccache clang-dev cmake dpkg g++ gawk gettext-dev jq lame-dev libass-dev libdrm-dev libffi-dev libpq-dev \
+    autoconf automake bash boost-dev busybox c-ares-dev cargo cargo-c ccache clang-dev cmake dpkg g++ gawk gettext-dev jq lame-dev libass-dev libdrm-dev libffi-dev libpq-dev \
     libraw-dev libtheora-dev libtool libudev-zero-dev libva-dev libvorbis-dev libvpx-dev libxml2-dev m4 make meson musl-locales nasm ninja numactl-dev opus-dev patch pkgconf \
     pv sqlite-dev swig tar unzip x264-dev xz zip zlib-dev
 

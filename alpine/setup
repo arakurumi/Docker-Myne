@@ -1,0 +1,138 @@
+#!/bin/bash
+
+apk update
+apk upgrade
+
+# Main Packages
+apk add --no-cache \
+    7zip aria2 coreutils curl fastfetch ffmpeg git libmagic mediainfo mkvtoolnix openjdk21-jre qbittorrent qbittorrent-nox tzdata wget
+
+# Build Packages
+apk add --no-cache \
+    autoconf automake boost-dev ccache clang17-dev cmake curl-dev dpkg g++ gawk gcc gettext-dev jq libtool linux-headers make musl-dev musl-locales pv unzip xz zip
+
+# Python Packages
+apk add --no-cache py3-pip python3-dev
+python -m pip install --break-system-packages --upgrade pip
+
+# HandBrake Packages
+apk add --no-cache \
+    busybox jansson-dev lame-dev libass-dev libdrm-dev libjpeg-turbo-dev libtheora-dev libva-dev libvorbis-dev libvpx-dev libxml2-dev m4 meson nasm ninja numactl-dev opus-dev \
+    patch pkgconf speex-dev tar x264-dev
+
+mkdir /Temp
+
+echo "Asia/Jakarta" >> /etc/timezone
+cp /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+
+# 7Zip
+cd /Temp
+wget https://7-zip.org/a/7z2409-linux-x64.tar.xz
+7z x -o7z 7z2409-linux-x64.tar.xz
+cd /Temp/7z
+7z x 7z2409-linux-x64.tar
+mv 7zzs /usr/bin/7z
+chmod +x /usr/bin/7z
+
+# AniDL
+cd /Temp
+wget https://github.com/anidl/multi-downloader-nx/releases/latest/download/multi-downloader-nx-linux-cli.7z
+7z x multi-downloader-nx-linux-cli.7z
+cd /Temp/multi-downloader-nx-linux-x64-cli
+mv aniDL /usr/bin/anidl
+chmod +x /usr/bin/anidl
+anidl --service "crunchy" --dlFonts
+
+# Bento4
+cd /Temp
+mkdir Bento4
+cd /Temp/Bento4
+git clone -c advice.detachedHead=false https://github.com/axiomatic-systems/Bento4.git .
+cmake -DCMAKE_BUILD_TYPE=Release .
+make -j$(nproc)
+make install
+
+# Code-Server
+cd /Temp
+curl -fsSL https://code-server.dev/install.sh | sh
+
+# Gost
+cd /Temp
+wget https://github.com/ginuerzh/gost/releases/download/v2.12.0/gost_2.12.0_linux_amd64v3.tar.gz
+7z x gost_2.12.0_linux_amd64v3.tar.gz
+7z x gost_2.12.0_linux_amd64v3.tar
+mv gost /usr/bin/gost
+chmod +x /usr/bin/gost
+
+# GPAC
+cd /Temp
+mkdir GPAC
+cd /Temp/GPAC
+git clone -c advice.detachedHead=false https://github.com/gpac/gpac.git .
+./configure
+make
+make install
+
+# HandBrake
+cd /Temp
+mkdir HandBrake
+cd /Temp/HandBrake
+HandBrakeVersion=$(curl -s https://api.github.com/repos/HandBrake/HandBrake/releases/latest | awk '/tag_name/{print $4;exit}' FS='[""]')
+git clone -c advice.detachedHead=false --branch $HandBrakeVersion https://github.com/HandBrake/HandBrake.git .
+./configure --launch-jobs=$(nproc) --enable-qsv --disable-gtk --launch
+cd /Temp/HandBrake/build
+mv HandBrakeCLI /usr/bin/handbrake
+chmod +x /usr/bin/handbrake
+cd /Temp/HandBrake
+rm -rf .git
+
+# Hola-Proxy
+cd /Temp
+wget https://github.com/Snawoot/hola-proxy/releases/download/v1.17.0/hola-proxy.linux-amd64
+mv hola-proxy.linux-amd64 /usr/bin/hola-proxy
+chmod +x /usr/bin/hola-proxy
+
+# N-M3U8DL-Re
+cd /Temp
+wget https://github.com/nilaoda/N_m3u8DL-RE/releases/latest/download/N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241203.tar.gz
+7z x N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241203.tar.gz
+7z x N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241203.tar
+mv N_m3u8DL-RE /usr/bin/m3u8
+chmod +x /usr/bin/m3u8
+
+# NordVPN
+cd /Temp
+curl -fsSL https://downloads.nordcdn.com/apps/linux/install.sh | bash
+
+# Opera-Proxy
+cd /Temp
+wget https://github.com/Snawoot/opera-proxy/releases/download/v1.9.0/opera-proxy.linux-amd64
+mv opera-proxy.linux-amd64 /usr/bin/opera-proxy
+chmod +x /usr/bin/opera-proxy
+
+# Rclone
+cd /Temp
+curl https://rclone.org/install.sh | bash
+
+# Shaka-Packager
+cd /Temp
+wget https://github.com/shaka-project/shaka-packager/releases/download/v2.6.1/packager-linux-x64
+mv packager-linux-x64 /usr/bin/shaka-packager
+chmod +x /usr/bin/shaka-packager
+
+cd /
+rm -rf /Temp
+
+apk update
+apk upgrade
+
+apk del \
+    autoconf automake boost-dev busybox c-ares-dev cargo cargo-c ccache clang-dev cmake dpkg g++ gawk gettext-dev jq lame-dev libass-dev libdrm-dev libffi-dev libpq-dev \
+    libraw-dev libtheora-dev libtool libudev-zero-dev libva-dev libvorbis-dev libvpx-dev libxml2-dev m4 make meson musl-locales nasm ninja numactl-dev opus-dev patch pkgconf \
+    pv sqlite-dev swig tar unzip x264-dev xz zip zlib-dev
+
+rm -rf /root/.cache
+rm -rf /tmp/*
+rm -rf /var/cache/apk/*
+rm -rf Dockerfile
+rm -rf setup

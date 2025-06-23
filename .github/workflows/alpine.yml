@@ -1,21 +1,23 @@
-name: Docker.io
+name: Build and Push Alpine Image
 
 on:
   push:
     paths:
       - "Dockerfile"
       - "setup"
-  
+
   schedule:
-    - cron: "0 0 * * *"
-  
+    - cron: "0 0 * * 0"
+
   workflow_dispatch:
 
 jobs:
   build:
+    name: Docker.io
+
     runs-on: ubuntu-24.04
 
-    steps:      
+    steps:
       - name: Login to Docker.io
         uses: docker/login-action@master
         with:
@@ -27,7 +29,7 @@ jobs:
         uses: docker/metadata-action@master
         with:
           tags: |
-            ubuntu
+            alpine
           images: |
             arakurumi/myne
           labels: |
@@ -37,19 +39,20 @@ jobs:
             org.opencontainers.image.source=https://github.com/arakurumi/docker-myne
             org.opencontainers.image.title=Docker-Myne
             org.opencontainers.image.url=https://github.com/arakurumi/docker-myne
-            org.opencontainers.image.version=ubuntu
+            org.opencontainers.image.version=alpine
           annotations: |
             org.opencontainers.image.description=Docker Images for My Project
             org.opencontainers.image.licenses=Unlicense
             org.opencontainers.image.source=https://github.com/arakurumi/docker-myne
             org.opencontainers.image.title=Docker-Myne
             org.opencontainers.image.url=https://github.com/arakurumi/docker-myne
-            org.opencontainers.image.version=ubuntu
+            org.opencontainers.image.version=alpine
 
       - name: Build and Push to Docker.io
         uses: docker/build-push-action@master
         with:
           push: true
+          context: "{{defaultContext}}:alpine"
           no-cache: true
           provenance: false
           platforms: linux/amd64

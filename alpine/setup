@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 apk update
 apk upgrade
@@ -102,7 +102,7 @@ chmod +x /usr/bin/m3u8
 
 # NordVPN
 cd /Temp
-curl -fsSL https://downloads.nordcdn.com/apps/linux/install.sh | bash
+curl -fsSL https://downloads.nordcdn.com/apps/linux/install.sh | sh
 
 # Opera-Proxy
 cd /Temp
@@ -112,7 +112,7 @@ chmod +x /usr/bin/opera-proxy
 
 # Rclone
 cd /Temp
-curl https://rclone.org/install.sh | bash
+curl https://rclone.org/install.sh | sh
 
 # Shaka-Packager
 cd /Temp

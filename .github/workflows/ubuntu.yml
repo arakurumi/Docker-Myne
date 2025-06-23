@@ -1,4 +1,4 @@
-name: Docker.io
+name: Build and Push Ubuntu Image
 
 on:
   push:

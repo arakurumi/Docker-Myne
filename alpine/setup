@@ -22,7 +22,7 @@ apk add --no-cache \
 
 mkdir /Temp
 
-echo "Asia/Jakarta" >> /etc/timezone
+echo "Asia/Jakarta" >>/etc/timezone
 cp /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
 # 7Zip

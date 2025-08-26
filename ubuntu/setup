@@ -144,6 +144,18 @@ wget https://github.com/shaka-project/shaka-packager/releases/download/v2.6.1/pa
 mv packager-linux-x64 /usr/bin/shaka-packager
 chmod +x /usr/bin/shaka-packager
 
+# Usque
+cd /Temp
+wget https://github.com/Diniboy1123/usque/releases/latest/download/usque_1.4.1_linux_amd64.zip
+7z x usque_1.4.1_linux_amd64.zip
+mv usque /usr/bin/usque
+chmod +x /usr/bin/usque
+
+# Warp Proxy
+cd /Temp
+wget "https://raw.githubusercontent.com/hamid-gh98/x-ui-scripts/main/install_warp_proxy.sh"
+bash install_warp_proxy.sh -y
+
 cd /
 rm -rf /Temp
 

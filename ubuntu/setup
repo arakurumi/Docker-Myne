@@ -16,12 +16,6 @@ apt install --yes --no-install-recommends \
     python-is-python3 python3-dev python3-pip
 python -m pip install --upgrade pip
 
-# HandBrake Packages
-apt install --yes --no-install-recommends \
-    libass-dev libbz2-dev libdrm-dev libfontconfig-dev libfreetype-dev libfribidi-dev libharfbuzz-dev libjansson-dev libjpeg-turbo8-dev liblzma-dev libmp3lame-dev \
-    libnuma-dev libogg-dev libopus-dev libraw-dev libsamplerate0-dev libspeex-dev libtheora-dev libtool libtool-bin libturbojpeg0-dev libudev-dev libva-dev libvorbis-dev libvpx-dev \
-    libx264-dev libxml2-dev m4 meson nasm ninja-build patch pkg-config tar
-
 mkdir /Temp
 
 locale-gen en_US.UTF-8
@@ -40,14 +34,16 @@ mv aniDL /usr/bin/anidl
 chmod +x /usr/bin/anidl
 anidl --service "crunchy" --dlFonts
 
+# Bun
+cd /root/Temp
+curl -fsSL https://bun.sh/install | bash
+
 # Bento4
 cd /Temp
-mkdir Bento4
-cd /Temp/Bento4
-git clone -c advice.detachedHead=false https://github.com/axiomatic-systems/Bento4.git .
-cmake -DCMAKE_BUILD_TYPE=Release .
-make
-make install
+wget https://www.bok.net/Bento4/binaries/Bento4-SDK-1-6-0-641.x86_64-unknown-linux.zip
+7z x Bento4-SDK-1-6-0-641.x86_64-unknown-linux.zip
+cd /Temp/Bento4-SDK-1-6-0-641.x86_64-unknown-linux/bin
+mv * /usr/bin/
 
 # Code-Server
 cd /Temp
@@ -74,7 +70,7 @@ chmod +x /usr/bin/ffplay
 
 # Gost
 cd /Temp
-wget https://github.com/ginuerzh/gost/releases/download/v2.12.0/gost_2.12.0_linux_amd64v3.tar.gz
+wget https://github.com/ginuerzh/gost/releases/latest/download/gost_2.12.0_linux_amd64v3.tar.gz
 7z x gost_2.12.0_linux_amd64v3.tar.gz
 7z x gost_2.12.0_linux_amd64v3.tar
 mv gost /usr/bin/gost
@@ -82,31 +78,8 @@ chmod +x /usr/bin/gost
 
 # GPAC
 cd /Temp
-mkdir GPAC
-cd /Temp/GPAC
-git clone -c advice.detachedHead=false https://github.com/gpac/gpac.git .
-./configure
-make
-make install
-
-# HandBrake
-cd /Temp
-mkdir HandBrake
-cd /Temp/HandBrake
-HandBrakeVersion=$(curl -s https://api.github.com/repos/HandBrake/HandBrake/releases/latest | awk '/tag_name/{print $4;exit}' FS='[""]')
-git clone -c advice.detachedHead=false --branch $HandBrakeVersion https://github.com/HandBrake/HandBrake.git .
-./configure --launch-jobs=$(nproc) --enable-qsv --disable-gtk --launch
-cd /Temp/HandBrake/build
-mv HandBrakeCLI /usr/bin/handbrake
-chmod +x /usr/bin/handbrake
-cd /Temp/HandBrake
-rm -rf .git
-
-# Hola-Proxy
-cd /Temp
-wget https://github.com/Snawoot/hola-proxy/releases/download/v1.17.0/hola-proxy.linux-amd64
-mv hola-proxy.linux-amd64 /usr/bin/hola-proxy
-chmod +x /usr/bin/hola-proxy
+wget https://download.tsi.telecom-paristech.fr/gpac/new_builds/linux64/gpac/gpac_2.5-DEV-rev1694-g4860a1a6-master_amd64.deb
+apt install --yes --no-install-recommends ./gpac_2.5-DEV-rev1694-g4860a1a6-master_amd64.deb
 
 # MKVToolNix
 cd /Temp
@@ -128,19 +101,13 @@ chmod +x /usr/bin/m3u8
 cd /Temp
 curl -fsSL https://downloads.nordcdn.com/apps/linux/install.sh | bash
 
-# Opera-Proxy
-cd /Temp
-wget https://github.com/Snawoot/opera-proxy/releases/download/v1.9.0/opera-proxy.linux-amd64
-mv opera-proxy.linux-amd64 /usr/bin/opera-proxy
-chmod +x /usr/bin/opera-proxy
-
 # Rclone
 cd /Temp
 curl https://rclone.org/install.sh | bash
 
 # Shaka-Packager
 cd /Temp
-wget https://github.com/shaka-project/shaka-packager/releases/download/v2.6.1/packager-linux-x64
+wget https://github.com/shaka-project/shaka-packager/releases/latest/download/packager-linux-x64
 mv packager-linux-x64 /usr/bin/shaka-packager
 chmod +x /usr/bin/shaka-packager
 
@@ -151,11 +118,6 @@ wget https://github.com/Diniboy1123/usque/releases/latest/download/usque_1.4.1_l
 mv usque /usr/bin/usque
 chmod +x /usr/bin/usque
 
-# Warp Proxy
-cd /Temp
-wget "https://raw.githubusercontent.com/hamid-gh98/x-ui-scripts/main/install_warp_proxy.sh"
-bash install_warp_proxy.sh -y
-
 cd /
 rm -rf /Temp
 
@@ -163,9 +125,7 @@ apt update --yes
 apt upgrade --yes
 
 apt remove --yes \
-    autoconf automake build-essential cargo cmake g++ gcc gettext gpg-agent libass-dev libbz2-dev libdrm-dev libcurl4-openssl-dev libfontconfig-dev libfreetype-dev \
-    libfribidi-dev libharfbuzz-dev liblzma-dev libmp3lame-dev libnuma-dev libogg-dev libopus-dev libraw-dev libsamplerate0-dev libssl-dev libtheora-dev libtool libtool-bin libudev-dev \
-    libva-dev libvorbis-dev libvpx-dev libx264-dev libxml2-dev m4 make meson nasm ninja-build patch pkg-config software-properties-common tar unzip zip
+    autoconf automake build-essential cmake g++ gcc gettext gpg-agent libcurl4-openssl-dev libssl-dev software-properties-common unzip zip
 
 apt autoclean --yes
 apt autoremove --yes

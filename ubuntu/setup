@@ -28,7 +28,7 @@ dpkg-reconfigure --frontend=noninteractive tzdata
 # AniDL
 cd /Temp
 wget https://github.com/anidl/multi-downloader-nx/releases/latest/download/multi-downloader-nx-linux-cli.7z
-7z x multi-downloader-nx-linux-cli.7z
+7z x -y multi-downloader-nx-linux-cli.7z
 cd /Temp/multi-downloader-nx-linux-x64-cli
 mv aniDL /usr/bin/anidl
 chmod +x /usr/bin/anidl
@@ -41,7 +41,7 @@ curl -fsSL https://bun.sh/install | bash
 # Bento4
 cd /Temp
 wget https://www.bok.net/Bento4/binaries/Bento4-SDK-1-6-0-641.x86_64-unknown-linux.zip
-7z x Bento4-SDK-1-6-0-641.x86_64-unknown-linux.zip
+7z x -y Bento4-SDK-1-6-0-641.x86_64-unknown-linux.zip
 cd /Temp/Bento4-SDK-1-6-0-641.x86_64-unknown-linux/bin
 mv * /usr/bin/
 
@@ -58,8 +58,8 @@ apt install --yes --no-install-recommends fastfetch
 # FFMPEG
 cd /Temp
 wget https://github.com/arakurumi/FFmpeg-Builds/releases/latest/download/ffmpeg-n7.1-latest-linux64-nonfree-7.1.tar.xz
-7z x ffmpeg-n7.1-latest-linux64-nonfree-7.1.tar.xz
-7z x ffmpeg-n7.1-latest-linux64-nonfree-7.1.tar
+7z x -y ffmpeg-n7.1-latest-linux64-nonfree-7.1.tar.xz
+7z x -y ffmpeg-n7.1-latest-linux64-nonfree-7.1.tar
 cd /Temp/ffmpeg-n7.1-latest-linux64-nonfree-7.1/bin
 mv ffmpeg /usr/bin/ffmpeg
 mv ffprobe /usr/bin/ffprobe
@@ -71,8 +71,8 @@ chmod +x /usr/bin/ffplay
 # Gost
 cd /Temp
 wget https://github.com/ginuerzh/gost/releases/latest/download/gost_2.12.0_linux_amd64v3.tar.gz
-7z x gost_2.12.0_linux_amd64v3.tar.gz
-7z x gost_2.12.0_linux_amd64v3.tar
+7z x -y gost_2.12.0_linux_amd64v3.tar.gz
+7z x -y gost_2.12.0_linux_amd64v3.tar
 mv gost /usr/bin/gost
 chmod +x /usr/bin/gost
 
@@ -92,8 +92,8 @@ apt install --yes --no-install-recommends mkvtoolnix
 # N-M3U8DL-Re
 cd /Temp
 wget https://github.com/nilaoda/N_m3u8DL-RE/releases/latest/download/N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241203.tar.gz
-7z x N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241203.tar.gz
-7z x N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241203.tar
+7z x -y N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241203.tar.gz
+7z x -y N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241203.tar
 mv N_m3u8DL-RE /usr/bin/m3u8
 chmod +x /usr/bin/m3u8
 
@@ -114,7 +114,7 @@ chmod +x /usr/bin/shaka-packager
 # Usque
 cd /Temp
 wget https://github.com/Diniboy1123/usque/releases/latest/download/usque_1.4.1_linux_amd64.zip
-7z x usque_1.4.1_linux_amd64.zip
+7z x -y usque_1.4.1_linux_amd64.zip
 mv usque /usr/bin/usque
 chmod +x /usr/bin/usque
 

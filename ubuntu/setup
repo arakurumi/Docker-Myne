@@ -78,8 +78,8 @@ chmod +x /usr/bin/gost
 
 # GPAC
 cd /Temp
-wget https://download.tsi.telecom-paristech.fr/gpac/new_builds/linux64/gpac/gpac_2.5-DEV-rev1694-g4860a1a6-master_amd64.deb
-apt install --yes --no-install-recommends ./gpac_2.5-DEV-rev1694-g4860a1a6-master_amd64.deb
+wget https://download.tsi.telecom-paristech.fr/gpac/new_builds/gpac_latest_head_linux64.deb
+apt install --yes --no-install-recommends ./gpac_latest_head_linux64.deb
 
 # MKVToolNix
 cd /Temp

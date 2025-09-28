@@ -3,8 +3,8 @@ name: Build and Push Ubuntu Image
 on:
   push:
     paths:
-      - "Dockerfile"
-      - "setup"
+      - "ubuntu/Dockerfile"
+      - "ubuntu/setup"
 
   schedule:
     - cron: "0 0 * * *"
@@ -13,6 +13,8 @@ on:
 
 jobs:
   build:
+    name: Docker.io
+
     runs-on: ubuntu-24.04
 
     steps:

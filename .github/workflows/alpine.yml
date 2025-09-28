@@ -3,11 +3,11 @@ name: Build and Push Alpine Image
 on:
   push:
     paths:
-      - "Dockerfile"
-      - "setup"
+      - "alpine/Dockerfile"
+      - "alpine/setup"
 
   schedule:
-    - cron: "0 0 * * 0"
+    - cron: "0 0 * * *"
 
   workflow_dispatch:
 

@@ -43,6 +43,10 @@ mv aniDL /usr/bin/anidl
 chmod +x /usr/bin/anidl
 anidl --service "crunchy" --dlFonts
 
+# Bun
+cd /root/Temp
+curl -fsSL https://bun.sh/install | bash
+
 # Bento4
 cd /Temp
 mkdir Bento4
@@ -55,6 +59,14 @@ make install
 # Code-Server
 cd /Temp
 curl -fsSL https://code-server.dev/install.sh | sh
+
+# Dovi-Tool
+cd /Temp
+wget https://github.com/quietvoid/dovi_tool/releases/latest/dovi_tool-2.3.1-x86_64-unknown-linux-musl.tar.gz
+7z x -y dovi_tool-2.3.1-x86_64-unknown-linux-musl.tar.gz
+7z x -y dovi_tool-2.3.1-x86_64-unknown-linux-musl.tar
+mv dovi_tool /usr/bin/dovi_tool
+chmod +x /usr/bin/dovi_tool
 
 # Gost
 cd /Temp
@@ -86,11 +98,13 @@ chmod +x /usr/bin/handbrake
 cd /Temp/HandBrake
 rm -rf .git
 
-# Hola-Proxy
+# HDR10Plus-Tool
 cd /Temp
-wget https://github.com/Snawoot/hola-proxy/releases/download/v1.17.0/hola-proxy.linux-amd64
-mv hola-proxy.linux-amd64 /usr/bin/hola-proxy
-chmod +x /usr/bin/hola-proxy
+wget https://github.com/quietvoid/hdr10plus_tool/releases/latest/download/hdr10plus_tool-1.7.1-x86_64-unknown-linux-musl.tar.gz
+7z x hdr10plus_tool-1.7.1-x86_64-unknown-linux-musl.tar.gz
+7z x hdr10plus_tool-1.7.1-x86_64-unknown-linux-musl.tar
+mv hdr10plus_tool /usr/bin/hdr10plus_tool
+chmod +x /usr/bin/hdr10plus_tool
 
 # N-M3U8DL-Re
 cd /Temp
@@ -104,12 +118,6 @@ chmod +x /usr/bin/m3u8
 cd /Temp
 curl -fsSL https://downloads.nordcdn.com/apps/linux/install.sh | bash
 
-# Opera-Proxy
-cd /Temp
-wget https://github.com/Snawoot/opera-proxy/releases/download/v1.9.0/opera-proxy.linux-amd64
-mv opera-proxy.linux-amd64 /usr/bin/opera-proxy
-chmod +x /usr/bin/opera-proxy
-
 # Rclone
 cd /Temp
 curl https://rclone.org/install.sh | bash
@@ -119,6 +127,13 @@ cd /Temp
 wget https://github.com/shaka-project/shaka-packager/releases/download/v2.6.1/packager-linux-x64
 mv packager-linux-x64 /usr/bin/shaka-packager
 chmod +x /usr/bin/shaka-packager
+
+# Usque
+cd /Temp
+wget https://github.com/Diniboy1123/usque/releases/latest/download/usque_1.4.1_linux_amd64.zip
+7z x -y usque_1.4.1_linux_amd64.zip
+mv usque /usr/bin/usque
+chmod +x /usr/bin/usque
 
 cd /
 rm -rf /Temp

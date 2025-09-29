@@ -5,7 +5,7 @@ apk upgrade
 
 # Main Packages
 apk add --no-cache \
-    7zip aria2 coreutils curl fastfetch ffmpeg git libmagic mediainfo mkvtoolnix openjdk21-jre qbittorrent qbittorrent-nox tzdata wget
+    7zip aria2 coreutils curl fastfetch ffmpeg git libmagic mediainfo mkvtoolnix openjdk21-jre qbittorrent qbittorrent-nox sox tzdata wget
 
 # Build Packages
 apk add --no-cache \

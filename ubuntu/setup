@@ -5,7 +5,7 @@ apt upgrade --yes
 
 # Main Packages
 apt install --yes --no-install-recommends \
-    apt-utils aria2 ca-certificates curl git libmagic-dev locales mediainfo neofetch p7zip-full p7zip-rar tzdata wget
+    apt-utils aria2 ca-certificates curl git libmagic-dev locales mediainfo neofetch p7zip-full p7zip-rar sox tzdata wget
 
 # Build Packages
 apt install --yes --no-install-recommends \

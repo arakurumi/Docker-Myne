@@ -65,10 +65,10 @@ apt install --yes --no-install-recommends fastfetch
 
 # FFMPEG
 cd /Temp
-wget https://github.com/arakurumi/FFmpeg-Builds/releases/latest/download/ffmpeg-n7.1-latest-linux64-nonfree-7.1.tar.xz
-7z x -y ffmpeg-n7.1-latest-linux64-nonfree-7.1.tar.xz
-7z x -y ffmpeg-n7.1-latest-linux64-nonfree-7.1.tar
-cd /Temp/ffmpeg-n7.1-latest-linux64-nonfree-7.1/bin
+wget https://github.com/arakurumi/FFmpeg-Builds/releases/latest/download/ffmpeg-n8.0-latest-linux64-nonfree-8.0.tar.xz
+7z x -y ffmpeg-n8.0-latest-linux64-nonfree-8.0.tar.xz
+7z x -y ffmpeg-n8.0-latest-linux64-nonfree-8.0.tar
+cd /Temp/ffmpeg-n8.0-latest-linux64-nonfree-8.0/bin
 mv ffmpeg /usr/bin/ffmpeg
 mv ffprobe /usr/bin/ffprobe
 mv ffplay /usr/bin/ffplay

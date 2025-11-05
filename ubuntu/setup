@@ -107,9 +107,9 @@ apt install --yes --no-install-recommends mkvtoolnix
 
 # N-M3U8DL-Re
 cd /Temp
-wget https://github.com/nilaoda/N_m3u8DL-RE/releases/latest/download/N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241203.tar.gz
-7z x -y N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241203.tar.gz
-7z x -y N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241203.tar
+wget https://github.com/nilaoda/N_m3u8DL-RE/releases/latest/download/N_m3u8DL-RE_v0.5.1-beta_linux-x64_20251029.tar.gz
+7z x -y N_m3u8DL-RE_v0.5.1-beta_linux-x64_20251029.tar.gz
+7z x -y N_m3u8DL-RE_v0.5.1-beta_linux-x64_20251029.tar
 mv N_m3u8DL-RE /usr/bin/m3u8
 chmod +x /usr/bin/m3u8
 
@@ -129,8 +129,8 @@ chmod +x /usr/bin/shaka-packager
 
 # Usque
 cd /Temp
-wget https://github.com/Diniboy1123/usque/releases/latest/download/usque_1.4.1_linux_amd64.zip
-7z x -y usque_1.4.1_linux_amd64.zip
+wget https://github.com/Diniboy1123/usque/releases/latest/download/usque_1.4.2_linux_amd64.zip
+7z x -y usque_1.4.2_linux_amd64.zip
 mv usque /usr/bin/usque
 chmod +x /usr/bin/usque
 

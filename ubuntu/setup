@@ -40,10 +40,12 @@ curl -fsSL https://bun.sh/install | bash
 
 # Bento4
 cd /Temp
-wget https://www.bok.net/Bento4/binaries/Bento4-SDK-1-6-0-641.x86_64-unknown-linux.zip
-7z x -y Bento4-SDK-1-6-0-641.x86_64-unknown-linux.zip
-cd /Temp/Bento4-SDK-1-6-0-641.x86_64-unknown-linux/bin
-mv * /usr/bin/
+mkdir Bento4
+cd /Temp/Bento4
+git clone -c advice.detachedHead=false https://github.com/axiomatic-systems/Bento4.git .
+cmake -DCMAKE_BUILD_TYPE=Release .
+make -j$(nproc)
+make install
 
 # Code-Server
 cd /Temp
@@ -51,9 +53,9 @@ curl -fsSL https://code-server.dev/install.sh | sh
 
 # Dovi-Tool
 cd /Temp
-wget https://github.com/quietvoid/dovi_tool/releases/latest/dovi_tool-2.3.1-x86_64-unknown-linux-musl.tar.gz
-7z x -y dovi_tool-2.3.1-x86_64-unknown-linux-musl.tar.gz
-7z x -y dovi_tool-2.3.1-x86_64-unknown-linux-musl.tar
+wget https://github.com/quietvoid/dovi_tool/releases/latest/dovi_tool-2.3.2-x86_64-unknown-linux-musl.tar.gz
+7z x -y dovi_tool-2.3.2-x86_64-unknown-linux-musl.tar.gz
+7z x -y dovi_tool-2.3.2-x86_64-unknown-linux-musl.tar
 mv dovi_tool /usr/bin/dovi_tool
 chmod +x /usr/bin/dovi_tool
 
@@ -89,11 +91,24 @@ cd /Temp
 wget https://download.tsi.telecom-paristech.fr/gpac/new_builds/gpac_latest_head_linux64.deb
 apt install --yes --no-install-recommends ./gpac_latest_head_linux64.deb
 
+# HandBrake
+cd /Temp
+mkdir HandBrake
+cd /Temp/HandBrake
+HandBrakeVersion=$(curl -s https://api.github.com/repos/HandBrake/HandBrake/releases/latest | awk '/tag_name/{print $4;exit}' FS='[""]')
+git clone -c advice.detachedHead=false --branch $HandBrakeVersion https://github.com/HandBrake/HandBrake.git .
+./configure --launch-jobs=$(nproc) --enable-qsv --disable-gtk --launch
+cd /Temp/HandBrake/build
+mv HandBrakeCLI /usr/bin/handbrake
+chmod +x /usr/bin/handbrake
+cd /Temp/HandBrake
+rm -rf .git
+
 # HDR10Plus-Tool
 cd /Temp
-wget https://github.com/quietvoid/hdr10plus_tool/releases/latest/download/hdr10plus_tool-1.7.1-x86_64-unknown-linux-musl.tar.gz
-7z x hdr10plus_tool-1.7.1-x86_64-unknown-linux-musl.tar.gz
-7z x hdr10plus_tool-1.7.1-x86_64-unknown-linux-musl.tar
+wget https://github.com/quietvoid/hdr10plus_tool/releases/latest/download/hdr10plus_tool-1.7.2-x86_64-unknown-linux-musl.tar.gz
+7z x hdr10plus_tool-1.7.2-x86_64-unknown-linux-musl.tar.gz
+7z x hdr10plus_tool-1.7.2-x86_64-unknown-linux-musl.tar
 mv hdr10plus_tool /usr/bin/hdr10plus_tool
 chmod +x /usr/bin/hdr10plus_tool
 
@@ -129,8 +144,8 @@ chmod +x /usr/bin/shaka-packager
 
 # Usque
 cd /Temp
-wget https://github.com/Diniboy1123/usque/releases/latest/download/usque_1.4.2_linux_amd64.zip
-7z x -y usque_1.4.2_linux_amd64.zip
+wget https://github.com/Diniboy1123/usque/releases/latest/download/usque_2.0.1_linux_amd64.zip
+7z x -y usque_2.0.1_linux_amd64.zip
 mv usque /usr/bin/usque
 chmod +x /usr/bin/usque
 

@@ -27,10 +27,10 @@ cp /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
 # 7Zip
 cd /Temp
-wget https://7-zip.org/a/7z2409-linux-x64.tar.xz
-7z x -o7z 7z2409-linux-x64.tar.xz
+wget https://7-zip.org/a/7z2600-linux-x64.tar.xz
+7z x -o7z 7z2600-linux-x64.tar.xz
 cd /Temp/7z
-7z x 7z2409-linux-x64.tar
+7z x 7z2600-linux-x64.tar
 mv 7zzs /usr/bin/7z
 chmod +x /usr/bin/7z
 
@@ -62,9 +62,9 @@ curl -fsSL https://code-server.dev/install.sh | sh
 
 # Dovi-Tool
 cd /Temp
-wget https://github.com/quietvoid/dovi_tool/releases/latest/dovi_tool-2.3.1-x86_64-unknown-linux-musl.tar.gz
-7z x -y dovi_tool-2.3.1-x86_64-unknown-linux-musl.tar.gz
-7z x -y dovi_tool-2.3.1-x86_64-unknown-linux-musl.tar
+wget https://github.com/quietvoid/dovi_tool/releases/latest/dovi_tool-2.3.2-x86_64-unknown-linux-musl.tar.gz
+7z x -y dovi_tool-2.3.2-x86_64-unknown-linux-musl.tar.gz
+7z x -y dovi_tool-2.3.2-x86_64-unknown-linux-musl.tar
 mv dovi_tool /usr/bin/dovi_tool
 chmod +x /usr/bin/dovi_tool
 
@@ -124,14 +124,14 @@ curl https://rclone.org/install.sh | bash
 
 # Shaka-Packager
 cd /Temp
-wget https://github.com/shaka-project/shaka-packager/releases/download/v2.6.1/packager-linux-x64
+wget https://github.com/shaka-project/shaka-packager/releases/latest/download/packager-linux-x64
 mv packager-linux-x64 /usr/bin/shaka-packager
 chmod +x /usr/bin/shaka-packager
 
 # Usque
 cd /Temp
-wget https://github.com/Diniboy1123/usque/releases/latest/download/usque_1.4.2_linux_amd64.zip
-7z x -y usque_1.4.2_linux_amd64.zip
+wget https://github.com/Diniboy1123/usque/releases/latest/download/usque_2.0.1_linux_amd64.zip
+7z x -y usque_2.0.1_linux_amd64.zip
 mv usque /usr/bin/usque
 chmod +x /usr/bin/usque
 

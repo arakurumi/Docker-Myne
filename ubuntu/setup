@@ -16,6 +16,12 @@ apt install --yes --no-install-recommends \
     python-is-python3 python3-dev python3-pip
 python -m pip install --upgrade pip
 
+# Handbrake Packages
+apt install --yes --no-install-recommends \
+    autoconf automake build-essential clang cmake curl git libass-dev libbz2-dev libfontconfig-dev libfreetype-dev libfribidi-dev libharfbuzz-dev libjansson-dev liblzma-dev \
+    libmp3lame-dev libnuma-dev libogg-dev libopus-dev libsamplerate0-dev libspeex-dev libssl-dev libtheora-dev libtool libtool-bin libturbojpeg0-dev libvorbis-dev libvpx-dev \
+    libx264-dev libxml2-dev m4 make meson nasm ninja-build patch pkg-config tar zlib1g-dev
+
 mkdir /Temp
 
 locale-gen en_US.UTF-8
@@ -27,12 +33,11 @@ dpkg-reconfigure --frontend=noninteractive tzdata
 
 # AniDL
 cd /Temp
-wget https://github.com/anidl/multi-downloader-nx/releases/latest/download/multi-downloader-nx-linux-cli.7z
-7z x -y multi-downloader-nx-linux-cli.7z
+wget https://github.com/anidl/multi-downloader-nx/releases/latest/download/multi-downloader-nx-linux-x64-cli.7z
+7z x -y multi-downloader-nx-linux-x64-cli.7z
 cd /Temp/multi-downloader-nx-linux-x64-cli
 mv aniDL /usr/bin/anidl
 chmod +x /usr/bin/anidl
-anidl --service "crunchy" --dlFonts
 
 # Bun
 cd /root/Temp
@@ -53,7 +58,7 @@ curl -fsSL https://code-server.dev/install.sh | sh
 
 # Dovi-Tool
 cd /Temp
-wget https://github.com/quietvoid/dovi_tool/releases/latest/dovi_tool-2.3.2-x86_64-unknown-linux-musl.tar.gz
+wget https://github.com/quietvoid/dovi_tool/releases/latest/download/dovi_tool-2.3.2-x86_64-unknown-linux-musl.tar.gz
 7z x -y dovi_tool-2.3.2-x86_64-unknown-linux-musl.tar.gz
 7z x -y dovi_tool-2.3.2-x86_64-unknown-linux-musl.tar
 mv dovi_tool /usr/bin/dovi_tool
@@ -97,7 +102,7 @@ mkdir HandBrake
 cd /Temp/HandBrake
 HandBrakeVersion=$(curl -s https://api.github.com/repos/HandBrake/HandBrake/releases/latest | awk '/tag_name/{print $4;exit}' FS='[""]')
 git clone -c advice.detachedHead=false --branch $HandBrakeVersion https://github.com/HandBrake/HandBrake.git .
-./configure --launch-jobs=$(nproc) --enable-qsv --disable-gtk --launch
+./configure --launch-jobs=$(nproc) --disable-gtk --launch
 cd /Temp/HandBrake/build
 mv HandBrakeCLI /usr/bin/handbrake
 chmod +x /usr/bin/handbrake
@@ -157,6 +162,11 @@ apt upgrade --yes
 
 apt remove --yes \
     autoconf automake build-essential cmake g++ gcc gettext gpg-agent libcurl4-openssl-dev libssl-dev software-properties-common unzip zip
+
+apt remove --yes \
+    autoconf automake build-essential clang cmake curl git libass-dev libbz2-dev libfontconfig-dev libfreetype-dev libfribidi-dev libharfbuzz-dev libjansson-dev liblzma-dev \
+    libmp3lame-dev libnuma-dev libogg-dev libopus-dev libsamplerate0-dev libspeex-dev libssl-dev libtheora-dev libtool libtool-bin libturbojpeg0-dev libvorbis-dev libvpx-dev \
+    libx264-dev libxml2-dev m4 meson nasm ninja-build patch pkg-config tar zlib1g-dev
 
 apt autoclean --yes
 apt autoremove --yes
